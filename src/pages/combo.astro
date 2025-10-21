@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { getEntry } from 'astro:content';
+
+// Load content from CMS
+const comboData = await getEntry('pages', 'combo');
+const data = comboData?.data || {
+  heroImage: "/images/Dia 4 Header .jpg",
+  numberOfMusicians: 5,
+  intro: "",
+  instruments: [],
+  rehearsalInfo: ""
+};
+---
+
+<BaseLayout 
+  title="Het Combo - Het Veerse Scheepstuig"
+  description="Ontdek het combo van Het Veerse Scheepstuig. Vijf enthousiaste muzikanten die het koor begeleiden met gitaar, contrabas, accordeon en viool."
+>
+  <!-- Hero Section -->
+  <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <img 
+      src={data.heroImage}
+      alt="Het Combo van Het Veerse Scheepstuig"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+    
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+        Het Combo
+      </h1>
+      <p class="text-xl md:text-2xl text-white/95 drop-shadow-lg">
+        De muzikale ruggengraat van ons koor
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <Section id="content" padding="large">
+    <div class="max-w-4xl mx-auto">
+      <SectionHeader 
+        title="Vijf enthousiaste muzikanten"
+        align="left"
+      />
+      
+      <div class="prose prose-lg max-w-none">
+        <div set:html={data.intro} class="text-xl text-gray-700 leading-relaxed mb-6" />
+
+        {data.rehearsalInfo && (
+          <div class="bg-primary-50 p-8 rounded-xl my-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Repetities</h3>
+            <div set:html={data.rehearsalInfo} class="text-xl text-gray-700" />
+          </div>
+        )}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Instruments Section -->
+  <Section background="gray" padding="large">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeader 
+        title="Ons instrumentarium"
+        subtitle="Rijk akoestisch geluid"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        {data.instruments && data.instruments.map((instrument: any) => (
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-20 h-20 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-4xl">🎵</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">{instrument.name}</h3>
+            <p class="text-gray-600">
+              {instrument.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 bg-secondary text-white p-8 rounded-xl">
+        <h3 class="text-2xl font-bold mb-4">Perfect op elkaar afgestemd</h3>
+        <p class="text-lg leading-relaxed">
+          Door de jarenlange samenwerking is het combo perfect op elkaar en op het koor afgestemd. Deze harmonie tussen zangers en muzikanten zorgt voor de herkenbare sound van Het Veerse Scheepstuig.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Features Section -->
+  <Section padding="large">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">5 Vaste muzikanten</h4>
+          <p class="text-gray-600">Enthousiast en toegewijd</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Bijna alle nummers</h4>
+          <p class="text-gray-600">Volledige begeleiding</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-2">Wekelijkse repetities</h4>
+          <p class="text-gray-600">Elke woensdag samen</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA Section -->
+  <Section background="gray" padding="large">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Ervaar ons live!
+      </h2>
+      <p class="text-xl text-gray-700 mb-8">
+        Wilt u het koor en combo in actie zien? Boek ons voor uw evenement of kom langs bij een repetitie.
+      </p>
+      <a 
+        href="/contact"
+        class="inline-block bg-primary hover:bg-primary-600 text-white font-bold px-10 py-5 rounded-xl text-lg transition-all transform hover:scale-105 shadow-lg"
+      >
+        Neem contact op
+      </a>
+    </div>
+  </Section>
+</BaseLayout>

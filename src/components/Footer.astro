@@ -18,6 +18,8 @@ import footerData from '../content/settings/footer.json';
           src={footerData.logoWhite || headerData.logoWhite} 
           alt={headerData.logoAlt} 
           class="h-16 w-auto mb-4 object-contain"
+          width="200"
+          height="64"
         />
         <p class="text-gray-300 leading-relaxed text-sm">
           {footerData.aboutText}
@@ -26,7 +28,7 @@ import footerData from '../content/settings/footer.json';
 
       <!-- Column 2: Contact & Locatie -->
       <div>
-        <h4 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Contact & Locatie</h4>
+        <h3 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Contact & Locatie</h3>
         <ul class="space-y-3">
           <li>
             <a href={`mailto:${footerData.contact.email}`} class="text-gray-300 hover:text-white transition-colors flex items-start gap-2">
@@ -61,7 +63,7 @@ import footerData from '../content/settings/footer.json';
 
       <!-- Column 3: Handige Links -->
       <div>
-        <h4 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Handige links</h4>
+        <h3 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Handige links</h3>
         <ul class="space-y-2">
           {footerData.usefulLinks.map(link => (
             <li>
@@ -73,7 +75,7 @@ import footerData from '../content/settings/footer.json';
 
       <!-- Column 4: Informatie -->
       <div>
-        <h4 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Informatie</h4>
+        <h3 class="font-heading text-sm font-bold mb-6 inline-block border border-white/60 rounded-full px-4 py-1">Informatie</h3>
         <ul class="space-y-2">
           {footerData.infoLinks.map(link => (
             <li>
@@ -89,6 +91,8 @@ import footerData from '../content/settings/footer.json';
           src={footerData.image} 
           alt={footerData.imageAlt} 
           class="w-full h-auto rounded-lg shadow-xl object-cover max-h-[300px]"
+          width="400"
+          height="300"
         />
       </div>
 
